@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor;
@@ -14,11 +15,10 @@ import pl.training.facade.Bank;
 import pl.training.facade.BankImpl;
 import pl.training.service.persistence.AccountRepository;
 import pl.training.service.persistence.ClientRepository;
-import pl.training.service.persistence.JpaAccountRepository;
-import pl.training.service.persistence.JpaClientRepository;
 import pl.training.service.persistence.generator.AccountNumberGenerator;
 import pl.training.service.persistence.generator.JpaAccountNumberGenerator;
 
+@EnableJpaRepositories(basePackages = "pl.training.service.persistence")
 @EnableTransactionManagement
 @EnableAspectJAutoProxy
 @Configuration
@@ -34,15 +34,15 @@ public class BeansConfig {
         return new JpaAccountNumberGenerator();
     }
     
-    @Bean
-    public AccountRepository accountRepository() {
-        return new JpaAccountRepository();
-    }
-    
-    @Bean
-    public ClientRepository clientRepository() {
-        return new JpaClientRepository();
-    }
+//    @Bean
+//    public AccountRepository accountRepository() {
+//        return new JpaAccountRepository();
+//    }
+//    
+//    @Bean
+//    public ClientRepository clientRepository() {
+//        return new JpaClientRepository();
+//    }
 
     @Bean
     public Bank bank(AccountNumberGenerator accountNumberGenerator,

@@ -24,7 +24,7 @@ public class BankImpl implements Bank {
 
     @Override
     public Client addClient(Client client) {
-        return clientRepository.save(client);
+        return clientRepository.saveAndFlush(client);
     }
 
     @Override
@@ -39,16 +39,16 @@ public class BankImpl implements Bank {
 
     @Override
     public void payInCashToAccount(String accountNumber, BigDecimal amount) {
-        Account account = accountRepository.read(accountNumber);
+        Account account = accountRepository.findOne(accountNumber);
         account.payIn(amount);
-        accountRepository.update(account);
+        accountRepository.save(account);
     }
 
     @Override
     public void payOutCashFromAccount(String accountNumber, BigDecimal amount) {
-        Account account = accountRepository.read(accountNumber);
+        Account account = accountRepository.findOne(accountNumber);
         account.payOut(amount);
-        accountRepository.update(account);
+        accountRepository.save(account);
     }
 
     @Override

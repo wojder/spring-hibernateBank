@@ -10,7 +10,6 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class SuperClient_ extends pl.training.domain.Client_ {
 
 	public static volatile SingularAttribute<SuperClient, BigDecimal> discount;
-	public static volatile SingularAttribute<SuperClient, Long> id;
 
 }
 
