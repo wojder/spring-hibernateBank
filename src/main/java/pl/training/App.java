@@ -10,6 +10,7 @@ import org.springframework.context.support.AbstractApplicationContext;
 import pl.training.domain.Account;
 import pl.training.domain.Address;
 import pl.training.domain.Client;
+import pl.training.domain.SuperClient;
 import pl.training.facade.Bank;
 
 public class App {
@@ -21,7 +22,7 @@ public class App {
 
         Client client1 = bank.addClient(new Client("Jan", "Kowalski",
                 new Address("Dobra", "31a", "61-333", "Poznań", HOME)));
-        Client client2 = bank.addClient(new Client("Maria", "Nowak",
+        Client client2 = bank.addClient(new SuperClient("Maria", "Nowak",
                 new Address("Miła", "11", "12-444", "Warszawa", HOME)));
         Account account1 = bank.createAccountForClient(client1);
         Account account2 = bank.createAccountForClient(client2);
