@@ -4,13 +4,17 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+@Table(name = "clients")
 @Entity
 public class Client implements Serializable {
 
@@ -19,8 +23,12 @@ public class Client implements Serializable {
     @GeneratedValue
     @Id
     private Long id;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
+    @JoinColumn
     private String lastName;
+    @JoinColumn(name = "client_id")
     @OneToMany(cascade = CascadeType.ALL)
     private List<Address> addresses = new ArrayList<>();
     @ManyToMany(mappedBy = "clients", fetch = FetchType.EAGER)

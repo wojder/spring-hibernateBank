@@ -1,12 +1,16 @@
 package pl.training.domain;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+
+@Table(name = "addresses")
 @Entity
 public class Address implements Serializable {
 
@@ -19,6 +23,7 @@ public class Address implements Serializable {
     private String house;
     private String zipcode;
     private String city;
+    @Column(name = "type")
     @Enumerated(EnumType.ORDINAL)
     private AddressType addressType;
     private boolean active;
