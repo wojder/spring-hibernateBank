@@ -5,7 +5,7 @@
     <groupId>pl.szkolenie</groupId>
     <artifactId>Bank-0.0.5-SNAPSHOT</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,6 +25,16 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <failOnMissingWebXml>
+                        false
+                    </failOnMissingWebXml>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -32,6 +42,17 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
         <dependency>
@@ -59,19 +80,7 @@
             <artifactId>aspectjweaver</artifactId>
             <version>1.8.4</version>
         </dependency>
-        <dependency>
-            <groupId>unknown.binary</groupId>
-            <artifactId>hibernate-jpamodelgen-4.3.1.Final</artifactId>
-            <version>SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
+        </dependencies>
     <name>Bank-0.0.5-SNAPSHOT</name>
-    <repositories>
-        <repository>
-            <id>unknown-jars-temp-repo</id>
-            <name>A temporary repository created by NetBeans for libraries and jars it could not identify. Please replace the dependencies in this repository with correct ones and delete this repository.</name>
-            <url>file:${project.basedir}/lib</url>
-        </repository>
-    </repositories>
+    
 </project>

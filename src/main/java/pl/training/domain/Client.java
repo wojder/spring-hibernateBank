@@ -29,8 +29,7 @@ import javax.persistence.TableGenerator;
 public class Client implements Serializable {
 
     private static final long serialVersionUID = 6114327889828540750L;
-
-    
+ 
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "customTableGenerator")
     @Id
     protected Long id;

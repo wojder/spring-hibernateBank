@@ -2,18 +2,18 @@ package pl.training.service.persistence.generator;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import pl.training.service.persistence.AccountRepository;
 
 public class JpaAccountNumberGenerator implements AccountNumberGenerator {
 
-    private static final String SELECT_MAX_ACCOUNT_NUMBER = "select max(a.number) from Account a";
     private static final long DEFAULT_ACCOUNT_NUMBER = 0L;
+    
+    private AccountRepository accountRepository;
 
-    @PersistenceContext(unitName = "bank")
-    private EntityManager entityManager;
-
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public JpaAccountNumberGenerator(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
     }
+    
     
     @Override
     public String getNext() {
@@ -21,9 +21,7 @@ public class JpaAccountNumberGenerator implements AccountNumberGenerator {
     }
        
     private Long getLastAccountNumber() {
-        String lastAccountNumber = entityManager
-                .createQuery(SELECT_MAX_ACCOUNT_NUMBER, String.class)
-                .getSingleResult();
+        String lastAccountNumber = accountRepository.getMaxAccountNumber();
         return lastAccountNumber != null ? Long.valueOf(lastAccountNumber) : DEFAULT_ACCOUNT_NUMBER;
     }
     
